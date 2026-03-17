@@ -156,13 +156,15 @@ app.use('/api', (req, res) => {
 });
 
 // Serve frontend static files in production
-const frontendDistPath = path.join(__dirname, '../frontend/dist');
-app.use(express.static(frontendDistPath));
+if (process.env.NODE_ENV === 'production') {
+    const frontendDistPath = path.join(__dirname, '../frontend/dist');
+    app.use(express.static(frontendDistPath));
 
-// Catch-all route to serve the React app for non-API requests
-app.get('*', (req, res) => {
-    res.sendFile(path.join(frontendDistPath, 'index.html'));
-});
+    // Catch-all route to serve the React app for non-API requests
+    app.get('*', (req, res) => {
+        res.sendFile(path.join(frontendDistPath, 'index.html'));
+    });
+}
 
 if (require.main === module) {
     app.listen(PORT, () => {
