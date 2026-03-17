@@ -13,7 +13,12 @@ const PORT = process.env.PORT || 5000;
 app.use(cors({
     origin: function (origin, callback) {
         // In development, allow all origins. In production, allow frontend URL (or specific list).
-        const allowedOrigins = [process.env.FRONTEND_URL || 'http://localhost:5173'];
+        const allowedOrigins = (
+            process.env.FRONTEND_URLS
+                ? process.env.FRONTEND_URLS.split(',').map(s => s.trim()).filter(Boolean)
+                : [process.env.FRONTEND_URL || 'http://localhost:5173']
+        );
+
         if (!origin || process.env.NODE_ENV !== 'production' || allowedOrigins.includes(origin)) {
             callback(null, true);
         } else {
