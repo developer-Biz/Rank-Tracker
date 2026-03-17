@@ -9,7 +9,7 @@ In production the backend serves `frontend/dist` and the frontend calls the API 
 
 ## Requirements
 
-- Node **20+** (backend `engines` is `>=20 <23`)
+- Node **22+** (backend `engines` is `>=22 <23`)
 - npm **10+**
 
 ## Environment variables
@@ -48,7 +48,7 @@ If your host has its own separate frontend build step, set `SKIP_FRONTEND_POSTIN
 
 ## Hostinger (Node app) checklist
 
-- Set runtime to **Node 20**
+- Set runtime to **Node 22**
 - Configure all env vars listed above
 - Start command: `npm start`
 - App root: `backend/` (recommended)
